@@ -55,8 +55,8 @@ void Sprite::UpdateSprites(int width, int height, int dir)
 		if (++frameCount > frameDelay)
 		{
 			frameCount = 0;
-			if (++curFrame > maxFrame)
-				curFrame = 9;
+			if (++curFrame > 12)
+				curFrame = 8;
 		}
 	}
 	else //represent that they hit the space bar and that mean direction = 0
@@ -116,7 +116,7 @@ int Sprite::jumping(int jump, const int JUMPIT)
 	{
 		y -= jump/3; 
 		jump--; 
-		curFrame=9;
+		curFrame=8;
 	}
 
 	if (jump<0) 
