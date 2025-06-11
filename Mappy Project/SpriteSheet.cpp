@@ -11,7 +11,7 @@ Sprite::~Sprite()
 void Sprite::InitSprites(int width, int height)
 {
 	x = 80;
-	y = -10;
+	y = 10;
 
 
 	maxFrame = 8;
@@ -114,8 +114,18 @@ int Sprite::jumping(int jump, const int JUMPIT)
 	}
 	else
 	{
-		y -= jump/3; 
-		jump--; 
+		if (jump > 0) {
+			if (y > 0) {
+				y -= jump / 3;
+			}
+			else {
+				jump = 0;
+			}
+		}
+		else {
+			y -= jump / 3;
+		}
+		jump--;
 		curFrame=8;
 	}
 
