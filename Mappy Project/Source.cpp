@@ -72,14 +72,16 @@ int main(void)
 		if(ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			render = true;
-			if(keys[UP])
+			if (keys[UP])
 				;
-			else if(keys[DOWN])
+			else if (keys[DOWN])
 				;
-			else if(keys[LEFT])
-				player.UpdateSprites(WIDTH,HEIGHT,0);
-			else if(keys[RIGHT])
-				player.UpdateSprites(WIDTH,HEIGHT,1);
+			else if (keys[LEFT])
+				player.UpdateSprites(WIDTH, HEIGHT, 0);
+			else if (keys[RIGHT])
+				player.UpdateSprites(WIDTH, HEIGHT, 1);
+			else if (keys[SPACE])
+				player.UpdateSprites(WIDTH, HEIGHT, 3);
 			else
 				player.UpdateSprites(WIDTH,HEIGHT,2);
 			if (player.CollisionEndBlock())

@@ -50,7 +50,16 @@ void Sprite::UpdateSprites(int width, int height, int dir)
 			if (++curFrame > maxFrame)
 				curFrame=1;
 		}
-	}else //represent that they hit the space bar and that mean direction = 0
+	}else if (dir == 3) {
+		animationDirection = 3;
+		if (++frameCount > frameDelay)
+		{
+			frameCount = 0;
+			if (++curFrame > maxFrame)
+				curFrame = 9;
+		}
+	}
+	else //represent that they hit the space bar and that mean direction = 0
 		animationDirection = dir;
 
 	//check for collided with foreground tiles
@@ -90,7 +99,9 @@ void Sprite::DrawSprites(int xoffset, int yoffset)
 		al_draw_bitmap_region(image, fx, fy, frameWidth,frameHeight, x-xoffset, y-yoffset, ALLEGRO_FLIP_HORIZONTAL);
 	}else if (animationDirection == 2 ){
 		al_draw_bitmap_region(image,0,0,frameWidth,frameHeight,  x-xoffset, y-yoffset, 0);
-
+	}
+	else if (animationDirection == 3) {
+		al_draw_bitmap_region(image, fx, fy, frameWidth, frameHeight, x - xoffset, y - yoffset, 0);
 	}
 }
 
@@ -105,7 +116,7 @@ int Sprite::jumping(int jump, const int JUMPIT)
 	{
 		y -= jump/3; 
 		jump--; 
-		curFrame=0;
+		curFrame=9;
 	}
 
 	if (jump<0) 
