@@ -1,6 +1,8 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "SpriteSheet.h"
 #include "mappy_A5.h"
 #include <iostream>
@@ -41,7 +43,11 @@ int main(void)
 	//addon init
 	al_install_keyboard();
 	al_init_image_addon();
+	al_init_font_addon();
+	al_init_ttf_addon();
 	al_init_primitives_addon();
+
+	ALLEGRO_FONT* font = al_load_font("Movistar Text Regular.ttf", 24, 0);
 
 	player.InitSprites(WIDTH,HEIGHT);
 
@@ -84,8 +90,12 @@ int main(void)
 				player.UpdateSprites(WIDTH, HEIGHT, 3);
 			else
 				player.UpdateSprites(WIDTH,HEIGHT,2);
-			if (player.CollisionEndBlock())
-				cout<<"Hit an End Block\n";
+			if (player.CollisionEndBlock()) {
+				al_draw_text(font, al_map_rgb(255, 0, 0), WIDTH / 2, HEIGHT / 2, 0, "Game Over");
+				al_flip_display();
+				al_rest(10);
+				done = true;
+			}
 			render = true;
 
 		}
@@ -174,7 +184,7 @@ int main(void)
 	MapFreeMem();
 	al_destroy_event_queue(event_queue);
 	al_destroy_display(display);						//destroy our display object
-
+	al_destroy_font(font);
 	return 0;
 }
 
