@@ -1,3 +1,6 @@
+//Alexander Young
+//Lab 11
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
@@ -90,6 +93,7 @@ int main(void)
 				player.UpdateSprites(WIDTH, HEIGHT, 3);
 			else
 				player.UpdateSprites(WIDTH,HEIGHT,2);
+			//If player collides with an endblock, end the program and show a message on the display
 			if (player.CollisionEndBlock()) {
 				al_draw_text(font, al_map_rgb(255, 0, 0), WIDTH / 2, HEIGHT / 2, 0, "Game Over");
 				al_flip_display();
