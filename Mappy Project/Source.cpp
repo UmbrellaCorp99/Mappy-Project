@@ -100,6 +100,7 @@ int main(void)
 				al_rest(10);
 				done = true;
 			}
+			MapUpdateAnims();
 			render = true;
 
 		}
